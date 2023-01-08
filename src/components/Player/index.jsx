@@ -25,7 +25,7 @@ function Player (props){
           className={`
             rounded-md
             ${props.variant == "vertical" ?
-              "mb-7" :
+              "mb-7 w-full" :
               "w-[84px]"
             }
           `}
@@ -40,8 +40,8 @@ function Player (props){
       {!props.hiddenReproduction && (
         <Reproduction
           className="mt-7"
-          total={100}
-          reproduced={90}
+          total={212}
+          reproduced={200}
         />
       )}
     </div>

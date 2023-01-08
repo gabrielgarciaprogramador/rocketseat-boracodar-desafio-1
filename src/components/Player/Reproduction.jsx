@@ -1,7 +1,7 @@
 function Reproduction (props){
 
   let pendent = props.total - props.reproduced;
-  let percentReproduced = (props.total * props.reproduced) / 100;
+  let percentReproduced = (props.reproduced * 100) / props.total;
 
   const formatMinutesSeconds = (secondsTotal) => {
     
@@ -9,6 +9,7 @@ function Reproduction (props){
     let seconds = Math.floor(secondsTotal % 60).toString().padStart(2,'0');
 
     return `${minutes}:${seconds}`
+
   }
 
   return (
