@@ -10,26 +10,40 @@ function Player (props){
       className={`
         bg-tolopea-400
         w-full
-        px-10
-        ${props.variant == "vertical" ? "py-12" : "py-10"}
+        ${props.variant == "vertical" ? "p-9 pt-12" : "p-7"}
         rounded-xl
       `}
     >
-      <img 
-        src={ImageAlbum}
-        className="rounded-md"
-      />
-      <Titles
-        music="Acorda Devinho"
-        author="Banda Rocketseat"
-      />
-      <Controls
-        className="mb-7"
-      />
-      <Reproduction
-        total={100}
-        reproduced={90}
-      />
+      <div
+        className={`
+          mb-7
+          ${props.variant == "horizontal" && "flex gap-7"}  
+        `}
+      >
+        <img 
+          src={ImageAlbum}
+          className={`
+            rounded-md
+            ${props.variant == "vertical" ?
+              "mb-7" :
+              "w-[84px]"
+            }
+          `}
+        />
+        <Titles
+          music="Acorda Devinho"
+          author="Banda Rocketseat"
+        />
+      </div>
+      
+      <Controls />
+      {!props.hiddenReproduction && (
+        <Reproduction
+          className="mt-7"
+          total={100}
+          reproduced={90}
+        />
+      )}
     </div>
   )
 }
@@ -37,10 +51,10 @@ function Player (props){
 function Titles (props) {
 
   return (
-    <>
-      <h3>{props.music}</h3>
-      <h4>{props.author}</h4>
-    </>
+    <div className="flex flex-col justify-center">
+      <h3 className="text-2xl text-white-100 font-bold mb-1">{props.music}</h3>
+      <h4 className="text-lg text-white-100 leading-4 opacity-75">{props.author}</h4>
+    </div>
   )
 }
 

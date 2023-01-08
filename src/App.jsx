@@ -12,7 +12,7 @@ function App() {
         <div className="flex-auto w-auto">
           <div className="flex flex-col gap-8">
             <Player variant="horizontal" />
-            <Player variant="horizontal-2" />
+            <Player variant="horizontal" hiddenReproduction={true} />
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { ReactComponent as PlayForward } from "../../assets/icons/play-forward.s
 function Controls (props){
 
   return (
-    <div className={`flex justify-between ${props.className}`} >
+    <div className={`flex justify-between max-w-[190px] m-auto ${props.className}`} >
       <div className="cursor-pointer hover:opacity-80">
         <PlayBack />
       </div>

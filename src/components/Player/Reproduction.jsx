@@ -12,7 +12,7 @@ function Reproduction (props){
   }
 
   return (
-    <div className="">
+    <div className={`${props.className}`}>
       <div className="w-full h-[6px] bg-gray-400 bg-opacity-10 rounded-lg mb-2">
         <div
           style={{width: `${percentReproduced}%`}}
