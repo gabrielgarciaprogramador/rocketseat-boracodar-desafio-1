@@ -17,7 +17,11 @@ function Reproduction (props){
       <div className="w-full h-[6px] bg-gray-400 bg-opacity-10 rounded-lg mb-2">
         <div
           style={{width: `${percentReproduced}%`}}
-          className="h-full bg-white-100 bg-opacity-80 rounded-lg"
+          className={`
+            h-full max-w-full
+            ${percentReproduced > 0 && "min-w-[6px]"}
+            bg-white-100 bg-opacity-80 rounded-lg
+          `}
         ></div>
       </div>
       <div className="flex justify-between">

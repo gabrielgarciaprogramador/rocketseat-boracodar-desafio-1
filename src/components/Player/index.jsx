@@ -1,14 +1,33 @@
+
+import { useContext, useState } from "react";
+import PlayerContextProvider, { PlayerContext } from "../../contexts/PlayerContext";
+
 import Controls from "./Controls";
 import Reproduction from "./Reproduction";
 
-import ImageAlbum from "../../assets/images/album-music.jpg";
+// import ImageAlbum from "../../assets/images/album-music-acorda-devinho.jpg";
 
 function Player (props){
 
   return (
+    <PlayerContextProvider>
+      <Content props={props} />
+    </PlayerContextProvider>
+  )
+}
+
+function Content ({props}){
+
+  const { currentMusic, reproducedMusicSeconds } = useContext(PlayerContext);
+
+  const durationMusicSeconds = currentMusic.duration;
+  
+  return (
     <div
+      style={{
+        backgroundColor: currentMusic.themeColor
+      }}
       className={`
-        bg-tolopea-400
         w-full
         ${props.variant == "vertical" ? "p-9 pt-12" : "p-7"}
         rounded-xl
@@ -20,8 +39,8 @@ function Player (props){
           ${props.variant == "horizontal" && "flex gap-7"}  
         `}
       >
-        <img 
-          src={ImageAlbum}
+        <ImageAlbum 
+          image={currentMusic.image}
           className={`
             rounded-md
             ${props.variant == "vertical" ?
@@ -31,8 +50,8 @@ function Player (props){
           `}
         />
         <Titles
-          music="Acorda Devinho"
-          author="Banda Rocketseat"
+          music={currentMusic.name}
+          author={currentMusic.author}
         />
       </div>
       
@@ -40,8 +59,8 @@ function Player (props){
       {!props.hiddenReproduction && (
         <Reproduction
           className="mt-7"
-          total={212}
-          reproduced={200}
+          total={durationMusicSeconds}
+          reproduced={reproducedMusicSeconds}
         />
       )}
     </div>
@@ -55,6 +74,22 @@ function Titles (props) {
       <h3 className="text-2xl text-white-100 font-bold mb-1">{props.music}</h3>
       <h4 className="text-lg text-white-100 leading-4 opacity-75">{props.author}</h4>
     </div>
+  )
+}
+
+function ImageAlbum (props) {
+
+  const [image, setImage] = useState(null)
+  
+  if(props.image){
+    import(`../../assets/images/${props.image}`).then(image => setImage(image.default))
+  }
+
+  return image && (
+    <img
+      src={image}
+      className={props.className}
+    />
   )
 }
 
